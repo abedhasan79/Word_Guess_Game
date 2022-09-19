@@ -5,53 +5,56 @@ let inputBox = document.getElementById("inputBox");
 let keyGenWord = document.getElementById("keyGenWord");
 
 
-timer.textContent ="Click Start!"
+timer.textContent = "Click Start!"
 
-let month=["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+let month = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 
-function strReplace(str){
-    return str.replace(/[a-zA-Z]/g , '-');
+
+let randomItem = month[Math.floor(Math.random() * month.length)];
+console.log(randomItem);
+let arrayAnswer = [];
+for (let i = 0; i < randomItem.length; i++) {
+    arrayAnswer[i] = "_";
 }
 
-function setCharAt(str,index,chr) {
-    if(index > str.length-1) return str;
-    return str.substring(0,index) + chr + str.substring(index+1);
-}
 
 
-function startGame(){
-    let randomItem = month[Math.floor(Math.random() * month.length)];
-    let dashChar="";
-    for(let i=0;i<randomItem.length;i++){
-        dashChar += strReplace(randomItem.charAt(i));
+
+function startGame() {
+
+    inputBox.addEventListener('keypress', function(e){
+        inputBox.value=e.key;
+        
+        for (let j = 0; j < randomItem.length; j++) {
+            if (e.key == randomItem.charAt(j)) {
+            arrayAnswer[j]=e.key;
+            let arrayToString = arrayAnswer.join(" ");
+            guessWord.innerHTML = arrayToString;
+        }
+        
+        if(!arrayAnswer.includes("_")){
+            timer.setAttribute("style","display:none");
+            inputBox.setAttribute("style", "display:none");
+            keyGenWord.textContent = "You Win!";
+        }
+
+        
     }
-    guessWord.textContent = dashChar;
-    console.log(randomItem);
-    console.log(dashChar);
-    console.log(typeof(dashChar));
+    })
 
 
     let count = 10;
-    let timeInterval = setInterval(function(){   
-        timer.textContent=count +" Second Left!";
+    let timeInterval = setInterval(function () {
+        timer.textContent = count + " Second Left!";
         count--;
-        if(count === 0){
+        if (count === 0) {
             clearInterval(timeInterval);
-            timer.textContent ="TIMES UP";
+            timer.textContent = "TIMES UP";
+            inputBox.setAttribute("style", "display:none");
+            
         }
-    },1000)
+    }, 1000)
 
-    inputBox.addEventListener('keydown', function(event){
-        let valueGenKey= "";
-        
-        let key = event.key;
-        for(let i=0;i<valueGenKey.length;i++){
-            if(randomItem.charAt(i)===key){
-                dashChar[i]=key;
-            }
-        }
-        inputBox.value=key;
-    })
 }
 
 

@@ -44,10 +44,26 @@ main section{
 }
 button{
     font-size: 8vh;
+    box-shadow: inset 0px 0px 8px rgb(255, 30, 0), 0 0 15px rgb(252, 0, 0);
+}
+
+button:hover{
+    background-color: antiquewhite;
+    color: black;
+    box-shadow: inset 0px 0px 8px rgb(230, 221, 219), 0 0 15px rgb(206, 193, 193);
+    cursor: grab;
 }
 
 .inputBox{
     padding-top: 5vh;
+}
+input{
+    background-color: antiquewhite;
+    color: black;
+    height: 10vh;
+    width: 12vh;
+    text-align: center;
+    box-shadow: inset 0px 0px 8px rgb(230, 221, 219), 0 0 15px rgb(206, 193, 193);
 }
 
 .hint{
@@ -59,3 +75,12 @@ button{
     font-size: 10vh;
 }
 
+#keyGenWord{
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    font-size: 8vh;
+}
+
+#winLoss{
+    margin-top: 8vh;
+}

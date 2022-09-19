@@ -8,7 +8,7 @@ let lossGame = document.getElementById("loss");
 
 
 
-localStorage.setItem("2", lossGame);
+
 // timer.textContent = "Click Start Game Button!"
 
 let month = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
@@ -22,7 +22,7 @@ function startGame() {
     for (let i = 0; i < randomItem.length; i++) {
         arrayAnswer[i] = "_";
     }
-
+    guessWord.innerHTML = arrayAnswer.join(' ');
     inputBox.addEventListener('keypress', function (e) {
         inputBox.value = e.key;
 
